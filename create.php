@@ -13,7 +13,7 @@
     <h1>Créez votre personnage : </h1>
     <h2>Reflet de vos compétences, passion et ambitions démesurées. Vous devez être inscrit pour ça.</h2>
 
-    <form action="create_traitment" method="POST">
+    <form action="create_traitment.php" method="POST">
         <input type="hidden" value="user_id" name="id">
         <div>
             <label for="pseudo">Pseudo</label>
@@ -24,6 +24,7 @@
             <label for="competence">Pseudo</label>
             <input type="text" name="competence" id="competence" placeholder="un de vos (nombreux) talents">
         </div>
+        <input type="submit">
     </form>
 </body>
 </html>
