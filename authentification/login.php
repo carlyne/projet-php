@@ -6,10 +6,9 @@
     <title>Game in Life</title>
 </head>
 <body>
-    <h1>Inscrivez-vous ! </h1>
-    <h2>Pour tenir à jour votre profil au quotidien</h2>
+    <h1>Connectez-vous ! </h1>
 
-    <form action="signup_traitment.php" method="POST">
+    <form action="login_traitment.php" method="POST">
         <div>
             <label for="email">email</label>
             <input type="email" name="email" id="email" placeholder="votre email">

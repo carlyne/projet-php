@@ -1,5 +1,6 @@
-<?php 
+<?php include('partials/service.php')?>
 
+<?php 
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 </head>
 <body>
     <h1>Créez votre personnage : </h1>
-    <h2>Reflet de vos compétences, passion et ambitions démesurées. Vous devez être inscrit pour ça.</h2>
+    <h2>Reflet de vos compétences, passion et ambitions démesurées.</h2>
 
     <form action="create_traitment.php" method="POST">
         <input type="hidden" value="user_id" name="id">

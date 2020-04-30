@@ -1,6 +1,6 @@
-<?php 
-$bdd = new PDO('mysql:host=localhost;dbname=gamelife;charset=utf8;port=3306', 'root', 'root');
+<?php include('../partials/service.php')?>
 
+<?php 
 $request = $bdd->prepare("INSERT INTO user (email, password) VALUES (:email, :password)");
 
 $request->execute([
@@ -8,7 +8,7 @@ $request->execute([
     "password" => $_POST['password']
 ]);
 
-header("Location: ../index.html");
+header("Location: ../index.php");
 
 // $request->debugDumpParams();
 ?>
