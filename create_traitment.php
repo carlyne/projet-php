@@ -1,7 +1,13 @@
-<?php include('../partials/service.php')?>
+<?php include('partials/service.php')?>
 
 <?php 
-// $request = "SELECT * FROM user WHERE email = '$thisUserEmail'";
-// $response = $bdd->query($request);
-// $user = $response->fetch(PDO::FETCH_ASSOC);
+
+var_dump($_POST);
+
+$thisUserId = (int) $_POST['id'];
+$thisUserCompetence = $_POST['competence'];
+
+
+// header("Location: index.php");
+
 ?>

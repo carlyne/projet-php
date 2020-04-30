@@ -7,7 +7,6 @@
 </head>
 <body>
     <h1>Inscrivez-vous ! </h1>
-    <h2>Pour tenir à jour votre profil au quotidien</h2>
 
     <form action="signup_traitment.php" method="POST">
         <div>

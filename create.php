@@ -7,6 +7,8 @@ $request = "SELECT name FROM competence";
 $response = $bdd->query($request);
 $competences = $response->fetchAll(PDO::FETCH_COLUMN);
 
+var_dump($competences); 
+
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +34,8 @@ $competences = $response->fetchAll(PDO::FETCH_COLUMN);
 
             <select name="competence" id="competence">
                 <option value="no skill">Compléter plus tard</option>
-                <?php foreach($competences as $competence) :?>
-                    <option value=<?= $competence ?>><?= $competence ?></option>
+                <?php foreach($competences as $competence => $value) :?>
+                    <option value="<?= $value ?>"><?= $value ?></option>
                 <?php endforeach;?>
             </select>
         </div>
