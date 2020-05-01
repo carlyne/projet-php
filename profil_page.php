@@ -28,7 +28,7 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
     <h2>Compétences</h2>
     <ul>
         <li><?= $competences['name'] ?> : <?= $competences['content'] ?>. State : <?= $competences['evol_state'] ?> %
-        <button><a href="delete.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
+        <button><a href="modifications/delete.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
     </ul>
 
     <h2>Objectifs</h2>
