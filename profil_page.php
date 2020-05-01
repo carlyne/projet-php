@@ -3,16 +3,16 @@
 <?php 
 
 // Get user's profil
-$selectUserProfil = "SELECT * FROM user LEFT JOIN profil ON user.profil = profil.id";
-$response = $bdd->query($selectUserProfil);
-$userProfil = $response->fetch(PDO::FETCH_ASSOC);
+$requestUserProfil = "SELECT * FROM user LEFT JOIN profil ON user.profil = profil.id";
+$getUserProfil = $bdd->query($requestUserProfil);
+$userProfil = $getUserProfil->fetch(PDO::FETCH_ASSOC);
+
+$thisUserProfil = (int) $userProfil['id'];
 
 // Get user's competences
-$selectSkills = "SELECT * FROM profil INNER JOIN competence ON profil.competences = competence.id";
-$queryResponse = $bdd->query($selectSkills);
-$competences = $queryResponse->fetchAll(PDO::FETCH_ASSOC);
-
-var_dump($competences);
+$requestCompetences = "SELECT * FROM competence_profil INNER JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE competence_profil.profil_id = $thisUserProfil";
+$getCompetences = $bdd->query($requestCompetences);
+$competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,8 @@ var_dump($competences);
 
     <h2>Compétences</h2>
     <ul>
-        <li><?= $userProfil['competences'] ?></li>
+        <li><?= $competences['name'] ?> : <?= $competences['content'] ?>. State : <?= $competences['evol_state'] ?> %
+        <button><a href="delete.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
     </ul>
 
     <h2>Objectifs</h2>
