@@ -5,7 +5,7 @@
 $thisUser = $_SESSION['user'];
 
 // Get list of all competences
-$request = "SELECT * FROM competence";
+$request = "SELECT * FROM competence_list";
 $response = $bdd->query($request);
 
 $competences = $response->fetchAll(PDO::FETCH_ASSOC);

@@ -24,10 +24,11 @@ USE gamelife;
 
 
 -- CREATE TABLE profil (
--- 	id INT PRIMARY KEY NOT NULL auto_increment,
+-- 	id INT PRIMARY KEY NOT NULL auto_increment UNIQUE,
 --     profil_image int,
 --     competences int,
 --     objectifs int,
+--     pseudo VARCHAR(150),
 -- 	FOREIGN KEY(competences) REFERENCES competence(id),
 --     FOREIGN KEY(objectifs) REFERENCES objectif(id),
 --     FOREIGN KEY(profil_image) REFERENCES image(id)
@@ -37,12 +38,14 @@ USE gamelife;
 -- ADD pseudo varchar(150);
 
 -- CREATE TABLE user (
--- 	id INT PRIMARY KEY NOT NULL auto_increment,
+-- 	id INT PRIMARY KEY NOT NULL auto_increment UNIQUE,
 --     email VARCHAR(70),
 -- 	password VARCHAR(150),
 --     profil int,
 --     FOREIGN KEY(profil) REFERENCES profil(id)
 -- );
+
+
 
 -- INSERT INTO user (email, password) VALUES('test_user@mail.com', '123456');
 -- SELECT * FROM profil;
@@ -60,11 +63,31 @@ USE gamelife;
 -- 	ON profil.user_id = user.id 
 -- WHERE user.id = 1;
 
--- SELECT * FROM user
--- INNER JOIN profil
--- 	ON profil.user_id = user.id;
+-- DROP TABLE user;
+
+-- DELETE FROM profil WHERE id > 2;
+-- LEFT JOIN profil
+-- 	ON user.id = profil.user_id;
 
 -- INSERT INTO profil (user_id) VALUES(2);
 
-DELETE FROM profil WHERE id > 2;
-DELETE FROM user WHERE id > 2;
+-- DELETE FROM profil WHERE id > 2;
+-- DELETE FROM user WHERE id > 2;
+
+
+-- CREATE TABLE competence_profil (
+-- id INT NOT NULL auto_increment UNIQUE,
+-- competence_id INT REFERENCES competence_list(id)
+-- )
+
+SELECT * FROM profil;
+
+-- UPDATE profil
+-- SET competence_amount = 1
+-- WHERE id = 1;
+
+-- ALTER TABLE profil
+-- CHANGE competences competence_amount INT;
+-- INSERT INTO competence_profil
+-- (competence_id, profil_id) 
+-- VALUES (2, 1);

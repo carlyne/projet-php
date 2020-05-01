@@ -10,6 +10,7 @@
 
         $currentUser = $_SESSION['user'];
         
+        // Get user's profil informations
         $selectUserProfil = "SELECT * FROM user LEFT JOIN profil ON user.profil = profil.id";
         $response = $bdd->query($selectUserProfil);
         $userProfil = $response->fetch(PDO::FETCH_ASSOC);
