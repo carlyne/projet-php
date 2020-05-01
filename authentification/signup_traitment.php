@@ -4,19 +4,30 @@
 
 $thisUserEmail = $_POST['email'];
 
-// Add User
+// Insert new user
 $queryInsertUser = $bdd->prepare("INSERT INTO user (email, password) VALUES (:email, :password)");
 $queryInsertUser->execute([
     "email" => $thisUserEmail,
     "password" => $_POST['password']
 ]);
 
-// Add Profil User
+// Insert new user's profil
 $querySelectUserId = $bdd->query("SELECT * FROM user WHERE email = '$thisUserEmail'");
 $user = $querySelectUserId->fetch(PDO::FETCH_ASSOC);
 $userId = (int) $user['id'];
 
 $bdd->query("INSERT INTO profil (user_id) VALUES($userId)");
+
+// Bind profil to user
+$querySelectUserProfil = $bdd->query("SELECT * FROM profil WHERE user_id = $userId");
+$profil = $profil->fetch(PDO::FETCH_ASSOC);
+$profilId = (int) $profil['id'];
+
+$queryInsertUserProfil = $bdd->prepare("UPDATE user SET profil = :profil WHERE id = :id");
+$queryInsertUserProfil->execute([
+    "profil" => $profilId,
+    "id" => $userId 
+]);
 
 // Back to Homepage
 header("Location: ../index.php");

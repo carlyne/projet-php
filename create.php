@@ -1,14 +1,14 @@
 <?php include('partials/service.php')?>
 
 <?php 
+// Get current user informations
 $thisUser = $_SESSION['user'];
 
-$request = "SELECT name FROM competence";
+// Get list of all competences
+$request = "SELECT * FROM competence";
 $response = $bdd->query($request);
-$competences = $response->fetchAll(PDO::FETCH_COLUMN);
 
-var_dump($competences); 
-
+$competences = $response->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ var_dump($competences);
             <select name="competence" id="competence">
                 <option value="no skill">Compléter plus tard</option>
                 <?php foreach($competences as $competence => $value) :?>
-                    <option value="<?= $value ?>"><?= $value ?></option>
+                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                 <?php endforeach;?>
             </select>
         </div>
