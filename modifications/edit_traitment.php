@@ -1,1 +1,1 @@
-<?php include('../partials/service.php')?>
+<?php include('../partials/service.php')?>  

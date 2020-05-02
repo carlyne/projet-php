@@ -29,7 +29,7 @@ if(!isset($thisCurrentUser)) {
         'profil' => $thisCurrentUser['profil']
     ]);
 
-    // Back to Homepage
+    // Back to profil page
     header("Location: ../profil_page.php");
 }
 ?>

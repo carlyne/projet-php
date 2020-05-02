@@ -51,29 +51,9 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
                 </ul>
             </section>
             
-</div>
-
-        <button><a href="add_traitment.php>">Ajouter une compétence</a></button>
-
-        
-
-            
-    
-
-    
-
-    <!-- <p>Ajouter une compétence</p>
-    <form action="modifications/edit_traitment.php" method="POST">
-        <div>
-            <label for="name"></label>
-            <input type="text" name="name" id="name" placeholder="nom de la compétence">
         </div>
-        <div>
-            <label for="content"></label>
-            <textarea  name="content" id="content" placeholder="courte description"></textarea>
-        </div>
-        <input type="submit">
-    </form> -->
+
+        <button><a href="modifications/add_competence.php">Ajouter une compétence</a></button>
 
 
     </main>
