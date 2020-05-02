@@ -14,6 +14,9 @@ $userProfil = $getUserProfil->fetch(PDO::FETCH_ASSOC);
 $requestUserCompetences = "SELECT * FROM competence_profil LEFT JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE profil_id = $currentProfilId";
 $getCompetences = $bdd->query($requestUserCompetences);
 $competences = $getCompetences->fetchAll(PDO::FETCH_ASSOC);
+
+// Get user's profil image
+$profilImage = $userProfil['profil_image'];
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +46,11 @@ $competences = $getCompetences->fetchAll(PDO::FETCH_ASSOC);
 
             <section class="character">
                 <h1>Pseudo : <?= $userProfil['pseudo'] ?> </h1>
-                <img src="assets/canadian-dollar.png" alt="" width="100%" height="200px ">
+                <?php if(empty($profilImage)) : ?>
+                    <img src="assets/man-default-avatar.png" alt="" width="100%" height="auto">
+                <?php else : ?>
+                    <img src="assets/<?= $profilImage ?>" alt="" width="100%" height="auto">
+                <?php endif; ?>
             </section>
 
             <section class="objectifs">
@@ -54,8 +61,11 @@ $competences = $getCompetences->fetchAll(PDO::FETCH_ASSOC);
             </section>
             
         </div>
-
-        <button><a href="modifications/add_competence.php">Ajouter une compétence</a></button>
+        
+        <div>
+            <button><a href="modifications/add_competence.php">Ajouter une compétence</a></button>
+            <button><a href="modifications/upload.php">Modifier l'image</a></button>
+        </div>
 
 
     </main>

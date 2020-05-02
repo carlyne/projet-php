@@ -48,11 +48,15 @@ USE gamelife;
 -- state_evol INT
 -- )
 
--- SELECT * FROM competence_profil;
+-- alter TABLE profil
+-- drop FOREIGN key profil_ibfk_3 ;
 
-UPDATE competence_profil
-SET id = 1, competence_id = 2
-WHERE profil_id = 1;
--- DELETE FROM competence_profil
--- WHERE id > 2;	
+-- ALTER TABLE profil
+-- MODIFY profil_image VARCHAR(150);
+
+SELECT * FROM profil;
+
+-- UPDATE profil
+-- SET profil_image = 'man-modifier-5ead940d9881e.png'
+-- WHERE user_id = 5;
 
