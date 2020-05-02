@@ -1,16 +1,17 @@
 <?php include('partials/service.php')?>
+<?php include('index_traitment.php')?>
 
 <?php 
 
+$currentProfilId = (int) $_SESSION['user']['profil'];
+
 // Get user's profil
-$requestUserProfil = "SELECT * FROM user LEFT JOIN profil ON user.profil = profil.id";
+$requestUserProfil = "SELECT * FROM profil WHERE id = $currentProfilId";
 $getUserProfil = $bdd->query($requestUserProfil);
 $userProfil = $getUserProfil->fetch(PDO::FETCH_ASSOC);
 
-$thisUserProfil = (int) $userProfil['id'];
-
 // Get user's competences
-$requestCompetences = "SELECT * FROM competence_profil INNER JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE competence_profil.profil_id = $thisUserProfil";
+$requestCompetences = "SELECT * FROM competence_profil INNER JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE competence_profil.profil_id = $currentProfilId";
 $getCompetences = $bdd->query($requestCompetences);
 $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -18,11 +19,15 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game in Life</title>
+    <?php include('partials/header.php')?>
+    <link rel="stylesheet" type="text/css" href="partials/style.css">
 </head>
 <body>
+
+    <?php include('partials/navbar.php')?>  
+    <header class="banner"></header>
+
+    <main class="profil-page">
     <h1>Pseudo : <?= $userProfil['pseudo'] ?> </h1>
 
     <h2>Compétences</h2>
@@ -48,5 +53,8 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
     <ul>
         <li><?= $userProfil['objectifs'] ?></li>
     </ul>
+    </main>
+
+    
 </body>
 </html>

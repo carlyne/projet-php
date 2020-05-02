@@ -5,6 +5,7 @@
 body {
     width: 100%;
     margin: 0 auto;
+    padding: 0;
     background-color: rgba(190,241,237,1);
     font-family: 'Montserrat', sans-serif;
 }
@@ -106,7 +107,9 @@ form div {
     width: calc(70% - 40px);
 }
 
-form input[type="email"], form input[type="password"] {
+form input[type="email"], 
+form input[type="password"],
+form input[type="text"] {
     border: none;
     border-bottom: 2px solid #222;
     border-radius: 1px;
@@ -119,3 +122,29 @@ form input[placeholder] {
     padding: 5px 0;
 }
 
+form.creation {
+    flex-direction: column;    
+}
+
+form.creation div {
+    margin: 20px 0;
+}
+
+select {
+    margin: 20px 0;
+    width: 100%;
+    padding: 10px;
+}
+
+
+/* page */
+
+main.profil-page {
+    margin: 0;
+    width: 80%;
+    padding: 20px;
+    position: absolute;
+    top: 120px;
+    left: calc(50% - 40%) ;
+    background: white;
+}
