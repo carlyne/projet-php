@@ -11,9 +11,9 @@ $getUserProfil = $bdd->query($requestUserProfil);
 $userProfil = $getUserProfil->fetch(PDO::FETCH_ASSOC);
 
 // Get user's competences
-$requestCompetences = "SELECT * FROM competence_profil INNER JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE competence_profil.profil_id = $currentProfilId";
-$getCompetences = $bdd->query($requestCompetences);
-$competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
+$requestUserCompetences = "SELECT * FROM competence_profil LEFT JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE profil_id = $currentProfilId";
+$getCompetences = $bdd->query($requestUserCompetences);
+$competences = $getCompetences->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -31,12 +31,14 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
         <div class="card">
             <section class="competences">
                 <h2>Compétences</h2>
+                <?php foreach($competences as $competence) :?>
                 <ul>
-                    <li><strong><?= $competences['name'] ?> :</strong> <?= $competences['content'] ?></li>
-                    <li>State : <?= $competences['evol_state'] ?> %</li>
-                    <button class="profil-button"><a href="modifications/delete_traitment.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
-                    <button class="profil-button"><a href="modifications/edit_traitment.php?competence=<?= $competences['id'] ?>">Edit</a></button></li>
+                    <li><strong><?= $competence['name'] ?> :</strong> <?= $competence['content'] ?></li>
+                    <li>State : <?= $competence['state_evol'] ?> %</li>
+                    <button class="profil-button"><a href="modifications/delete_traitment.php?competence=<?= $competence['competence_id'] ?>">Delete</a></button></li>
+                    <button class="profil-button"><a href="modifications/edit_competence.php?competence=<?= $competence['competence_id'] ?>">Edit</a></button></li>
                 </ul>
+                <?php endforeach;?>
             </section>
 
             <section class="character">

@@ -22,11 +22,12 @@ if(!isset($thisCurrentUser)) {
     $competenceId = $getCompetenceId->fetch(PDO::FETCH_ASSOC);
 
     // add new competence to profil page    
-    $requestAddCompetence = "INSERT INTO competence_profil (competence_id, profil_id) VALUES(:competence, :profil)";
+    $requestAddCompetence = "INSERT INTO competence_profil (competence_id, profil_id, state_evol) VALUES(:competence, :profil, :state_evol)";
     $sendRequestAddCompetence = $bdd->prepare($requestAddCompetence);
     $sendRequestAddCompetence->execute([
         'competence' => $competenceId['id'],
-        'profil' => $thisCurrentUser['profil']
+        'profil' => $thisCurrentUser['profil'],
+        'state_evol' => 0
     ]);
 
     // Back to profil page
