@@ -28,15 +28,41 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
     <header class="banner"></header>
 
     <main class="profil-page">
-    <h1>Pseudo : <?= $userProfil['pseudo'] ?> </h1>
+        <div class="card">
+            <section class="competences">
+                <h2>Compétences</h2>
+                <ul>
+                    <li><strong><?= $competences['name'] ?> :</strong> <?= $competences['content'] ?></li>
+                    <li>State : <?= $competences['evol_state'] ?> %</li>
+                    <button class="profil-button"><a href="modifications/delete_traitment.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
+                    <button class="profil-button"><a href="modifications/edit_traitment.php?competence=<?= $competences['id'] ?>">Edit</a></button></li>
+                </ul>
+            </section>
 
-    <h2>Compétences</h2>
-    <ul>
-        <li contenteditable="true"><?= $competences['name'] ?> : <?= $competences['content'] ?>. State : <?= $competences['evol_state'] ?> %
-        <button><a href="modifications/delete_traitment.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
-    </ul>
+            <section class="character">
+                <h1>Pseudo : <?= $userProfil['pseudo'] ?> </h1>
+                <img src="assets/canadian-dollar.png" alt="" width="100%" height="200px ">
+            </section>
 
-    <p>Ajouter une compétence</p>
+            <section class="objectifs">
+                <h2>Objectifs</h2>
+                <ul>
+                    <li><?= $userProfil['objectifs'] ?></li>
+                </ul>
+            </section>
+            
+</div>
+
+        <button><a href="add_traitment.php>">Ajouter une compétence</a></button>
+
+        
+
+            
+    
+
+    
+
+    <!-- <p>Ajouter une compétence</p>
     <form action="modifications/edit_traitment.php" method="POST">
         <div>
             <label for="name"></label>
@@ -47,13 +73,14 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
             <textarea  name="content" id="content" placeholder="courte description"></textarea>
         </div>
         <input type="submit">
-    </form>
+    </form> -->
 
-    <h2>Objectifs</h2>
-    <ul>
-        <li><?= $userProfil['objectifs'] ?></li>
-    </ul>
+
     </main>
+
+    
+
+
 
     
 </body>
