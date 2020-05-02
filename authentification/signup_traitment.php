@@ -19,13 +19,13 @@ $userId = (int) $user['id'];
 $bdd->query("INSERT INTO profil (user_id) VALUES($userId)");
 
 // Bind profil to user
-$querySelectUserProfil = $bdd->query("SELECT * FROM profil WHERE user_id = $userId");
-$profil = $profil->fetch(PDO::FETCH_ASSOC);
-$profilId = (int) $profil['id'];
+$requestProfilId = "SELECT * FROM profil WHERE user_id=$userId";
+$getProfilId = $bdd->query($requestProfilId);
+$profilId = $getProfilId->fetch(PDO::FETCH_ASSOC);
 
 $queryInsertUserProfil = $bdd->prepare("UPDATE user SET profil = :profil WHERE id = :id");
 $queryInsertUserProfil->execute([
-    "profil" => $profilId,
+    "profil" => $profilId['id'],
     "id" => $userId 
 ]);
 

@@ -12,6 +12,7 @@ $user = $response->fetch(PDO::FETCH_ASSOC);
 if ($_POST['password'] == $user['password']) {
     echo "vous êtes connecté";
     $_SESSION['user'] = $user;
+
 } else {
     echo "try again";
 }

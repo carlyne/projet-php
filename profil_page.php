@@ -27,9 +27,22 @@ $competences = $getCompetences->fetch(PDO::FETCH_ASSOC);
 
     <h2>Compétences</h2>
     <ul>
-        <li><?= $competences['name'] ?> : <?= $competences['content'] ?>. State : <?= $competences['evol_state'] ?> %
-        <button><a href="modifications/delete.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
+        <li contenteditable="true"><?= $competences['name'] ?> : <?= $competences['content'] ?>. State : <?= $competences['evol_state'] ?> %
+        <button><a href="modifications/delete_traitment.php?competence=<?= $competences['id'] ?>">Delete</a></button></li>
     </ul>
+
+    <p>Ajouter une compétence</p>
+    <form action="modifications/edit_traitment.php" method="POST">
+        <div>
+            <label for="name"></label>
+            <input type="text" name="name" id="name" placeholder="nom de la compétence">
+        </div>
+        <div>
+            <label for="content"></label>
+            <textarea  name="content" id="content" placeholder="courte description"></textarea>
+        </div>
+        <input type="submit">
+    </form>
 
     <h2>Objectifs</h2>
     <ul>
