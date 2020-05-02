@@ -41,6 +41,7 @@ $competences = $response->fetchAll(PDO::FETCH_ASSOC);
                 <label for="competence">Ou choisissez dans les compétences existantes</label>
 
                 <select name="competence" id="competence">
+                <option value="">Choisir une compétence</option>
                     <?php foreach($competences as $competence => $value) :?>
                         <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
                     <?php endforeach;?>
