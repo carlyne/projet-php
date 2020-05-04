@@ -63,25 +63,7 @@ USE gamelife;
 -- CREATE USER 'guest'@'localhost' IDENTIFIED BY 'guest123';
 -- GRANT ALL PRIVILEGES ON gamelife.* TO 'guest'@'localhost';
 
--- ALTER TABLE profil
--- ADD CONSTRAINT fk_profil_id FOREIGN KEY (id) REFERENCES profil(id);
-
 -- ALTER TABLE objectif
 -- ADD CONSTRAINT fk_profil_obj_id FOREIGN KEY (profil_id) REFERENCES profil(id);
 
--- SELECT * FROM user
--- INSERT INTO objectif
--- (name, content, profil_id) VALUES('Devenir riche', 'Racheter 4 parts de la France', 5);
-
--- UPDATE objectif
--- SET archived = 0;
-
--- SELECT * FROM profil;
--- DELETE FROM user WHERE id = 6;
-
--- INSERT INTO objectif
--- (name, content, profil_id, archived) VALUES('Acheter des tomates', 'acheter des tomates jeudi à 5h', 5, 1);
-
-ALTER TABLE profil DROP CONSTRAINT fk_profil_id;
-
--- INSERT INTO profil (user_id) VALUES(7);
+SELECT * FROM user;

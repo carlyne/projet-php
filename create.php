@@ -1,15 +1,21 @@
 <?php include('partials/service.php')?>
 <?php include('index_traitment.php')?>
+<?php include('functions.php')?>
 
 <?php 
-// Get current user informations
-$thisUser = $_SESSION['user'];
 
-// Get list of all competences
-$request = "SELECT * FROM competence_list";
-$response = $bdd->query($request);
+if($isUserConnected === true) {
+    // Get current user informations
+    $user = $_SESSION['user'];
 
-$competences = $response->fetchAll(PDO::FETCH_ASSOC);
+    // Get list of all competences
+    $requestCompetences = "SELECT * FROM competence_list";
+    $competences = doRequest($bdd, $requestCompetences);
+
+} else {
+    header("Location: ../error.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +33,7 @@ $competences = $response->fetchAll(PDO::FETCH_ASSOC);
         <h2>Reflet de vos compétences, passions et ambitions démesurées.</h2>
 
         <form class="creation" action="create_traitment.php" method="POST">
-            <input type="hidden" value=<?= $thisUser['id'] ?> name="id">
+            <input type="hidden" value=<?= $user['id'] ?> name="id">
 
             <div>
                 <input type="text" name="pseudo" id="pseudo" placeholder="votre pseudo">

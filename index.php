@@ -66,7 +66,7 @@ if($isUserConnected === true) {
             <div class="card-profil">
                 <figure><img src="assets/<?= $value['profil_image'] ?>" alt=""></figure>
                 <div> 
-                    <h3><?= $value['pseudo'] ?></h3>
+                <h3><a href="profil_page.php?id=<?= $value['id'] ?>"><?= $value['pseudo'] ?></a></h3>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -76,7 +76,7 @@ if($isUserConnected === true) {
                 <div class="card-profil">
                     <figure><img src="assets/<?= $value['profil_image'] ?>" alt=""></figure>
                     <div> 
-                        <h3><?= $value['pseudo'] ?></h3>
+                        <h3><a href="profil_page.php?id=<?= $value['id'] ?>"><?= $value['pseudo'] ?></a></h3>
                     </div>
                 </div>
             <?php endforeach; ?>

@@ -4,26 +4,31 @@
 
 <?php 
 
-if($isUserConnected == true) {
-    // Get user's profil
-    $requestUserProfil = "SELECT * FROM profil WHERE id = $profilId";
-    $userProfil = doSingleRequest($bdd, $requestUserProfil);
 
-    // Get user's competences
-    $requestUserCompetences = "SELECT * FROM competence_profil LEFT JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE profil_id = $profilId";
-    $competences = doRequest($bdd, $requestUserCompetences);
+    if( isset($_GET['id']) && $_GET['id'] != $_SESSION['user']['profil']) {
+        // redirect to profil page view
+        header("Location: profil_view_page.php?id=" . $_GET['id']);
+        
+    } else {
 
-    // Get user's profil image
-    $profilImage = $userProfil['profil_image'];
+        if($isUserConnected === true) {
+        // Get user's profil
+        $requestUserProfil = "SELECT * FROM profil WHERE id = $profilId";
+        $userProfil = doSingleRequest($bdd, $requestUserProfil);
 
-    //Get user's objectifs
-    $requestUserObjectifs = "SELECT * FROM objectif WHERE profil_id = $profilId";
-    $objectifs = doRequest($bdd, $requestUserObjectifs);
+        // Get user's competences
+        $requestUserCompetences = "SELECT * FROM competence_profil LEFT JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE profil_id = $profilId";
+        $competences = doRequest($bdd, $requestUserCompetences);
 
-} else {
-    echo "coming soon : Afficher une fiche personnage pour un utilisateur non connecté";
-}
+        // Get user's profil image
+        $profilImage = $userProfil['profil_image'];
 
+        //Get user's objectifs
+        $requestUserObjectifs = "SELECT * FROM objectif WHERE profil_id = $profilId";
+        $objectifs = doRequest($bdd, $requestUserObjectifs);
+
+        }
+    }
 
 ?>
 
@@ -51,9 +56,7 @@ if($isUserConnected == true) {
                         <li>
                             <strong><?= $competence['name'] ?> :</strong> <?= $competence['content'] ?>
                         </li>
-
                         <li>State : <?= $competence['state_evol'] ?> %</li>
-                        
                         <li>
                             <button class="profil-button"><a href="modifications/delete_traitment.php?competence=<?= $competence['competence_id'] ?>">Delete</a></button>
                             <button class="profil-button"><a href="modifications/edit_competence.php?competence=<?= $competence['competence_id'] ?>">Edit</a></button>

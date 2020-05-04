@@ -26,5 +26,5 @@ $requestUpdateProfilImg = "UPDATE profil SET profil_image = '$newFileName' WHERE
 $bdd->query($requestUpdateProfilImg);
 
 // Back to profil page
-// header("Location: ../profil_page.php");
+header("Location: ../profil_page.php");
 ?>
