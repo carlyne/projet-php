@@ -1,4 +1,5 @@
 <?php
+
     $isUserConnected = false;
     $userHasCharacter = false;
 

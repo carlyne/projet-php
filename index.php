@@ -1,21 +1,21 @@
 <?php include('partials/service.php')?>
 <?php include('index_traitment.php')?>
+<?php include('functions.php')?>
 
-<?php 
-//get 3 last users's profil
+<?php
 
+//Get 3 last users's profils
 if($isUserConnected === true) {
     $requestAllProfilsExcept = "SELECT * FROM profil WHERE NOT id = $profilId ORDER BY id DESC LIMIT 3";
-    $getAllProfilsExcept = $bdd->query($requestAllProfilsExcept);
-    $profilsExcept = $getAllProfilsExcept->fetchAll(PDO::FETCH_ASSOC);
-    
+    $profilsExcept = doRequest($bdd, $requestAllProfilsExcept);
+
 } else {
     $requestAllProfils = "SELECT * FROM profil ORDER BY id DESC LIMIT 3";
-    $getAllProfils = $bdd->query($requestAllProfils);
-    $profils = $getAllProfils->fetchAll(PDO::FETCH_ASSOC);
+    $profils = doRequest($bdd, $requestAllProfils);
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,8 +27,13 @@ if($isUserConnected === true) {
     
     <?php include('partials/navbar.php')?>   
 
+
+    <!-- Dynamic banner -->
     <header class="banner">
-<h1>Bienvenue sur Game in Life<?php if ($userHasCharacter) : ?>, <?= $userProfil['pseudo'] ?><?php endif; ?></h1>
+        <h1>
+            Bienvenue sur Game in Life <?php if ($userHasCharacter) : ?>, <?= $userProfil['pseudo'] ?><?php endif; ?>
+        </h1>
+        
         <?php if (!$isUserConnected) : ?>
             <button><a href="authentification/login.php">Se connecter</a></button>
         <?php elseif (!$userHasCharacter) : ?>
@@ -37,7 +42,9 @@ if($isUserConnected === true) {
             <button><a href="profil_page.php">Afficher votre personnage</a></button>
         <?php endif; ?>
     </header>
+    
 
+    <!-- Presentation -->
     <main class="main-index">
         <p>
             Gérez votre vie comme si vous étiez dans un jeux vidéo ! Créez votre perosnnage, ajoutez-lui vos compétences, objectifs, donnez-lui des objets et voyez votre évolution en acucmulant des compétences!
@@ -48,20 +55,31 @@ if($isUserConnected === true) {
         </figure>
     </main>
 
+
+    <!-- Display last profils created -->
+    <h2>Les derniers profils créés :</h2>
+
     <section class="profils">
-        <h2>Les derniers profils créés :</h2>
+        <?php if($isUserConnected === true) : ?>
 
-       <?php if($isUserConnected === true) : ?>
-        <?php foreach($profils as $profil => $value) : ?>
-        <div class="card">
-            <figure><img src="" alt=""></figure>
-
-            <div> 
-                <h3>Nom personnage</h3>
+        <?php foreach($profilsExcept as $profil => $value) : ?>
+            <div class="card-profil">
+                <figure><img src="assets/<?= $value['profil_image'] ?>" alt=""></figure>
+                <div> 
+                    <h3><?= $value['pseudo'] ?></h3>
+                </div>
             </div>
-        </div>
         <?php endforeach; ?>
+
         <?php else : ?>
+            <?php foreach($profils as $profil => $value) : ?>
+                <div class="card-profil">
+                    <figure><img src="assets/<?= $value['profil_image'] ?>" alt=""></figure>
+                    <div> 
+                        <h3><?= $value['pseudo'] ?></h3>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         <?php endif; ?>    
     </section>
     

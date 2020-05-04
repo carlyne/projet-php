@@ -1,27 +1,34 @@
 <?php include('partials/service.php')?>
 <?php include('index_traitment.php')?>
+<?php include('functions.php')?>
 
 <?php 
 
-$currentProfilId = (int) $_SESSION['user']['profil'];
+if($isUserConnected == true) {
+
+// $currentProfilId = (int) $_SESSION['user']['profil'];
 
 // Get user's profil
-$requestUserProfil = "SELECT * FROM profil WHERE id = $currentProfilId";
+$requestUserProfil = "SELECT * FROM profil WHERE id = $profilId";
 $getUserProfil = $bdd->query($requestUserProfil);
 $userProfil = $getUserProfil->fetch(PDO::FETCH_ASSOC);
 
 // Get user's competences
-$requestUserCompetences = "SELECT * FROM competence_profil LEFT JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE profil_id = $currentProfilId";
+$requestUserCompetences = "SELECT * FROM competence_profil LEFT JOIN competence_list ON competence_profil.competence_id = competence_list.id WHERE profil_id = $profilId";
 $getCompetences = $bdd->query($requestUserCompetences);
 $competences = $getCompetences->fetchAll(PDO::FETCH_ASSOC);
 
 //Get user's objectifs
-$requestUserObjectifs = "SELECT * FROM objectif WHERE profil_id = $currentProfilId";
+$requestUserObjectifs = "SELECT * FROM objectif WHERE profil_id = $profilId";
 $getObjectifs = $bdd->query($requestUserObjectifs);
 $objectifs = $getObjectifs->fetchAll(PDO::FETCH_ASSOC);
 
 // Get user's profil image
 $profilImage = $userProfil['profil_image'];
+
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +70,7 @@ $profilImage = $userProfil['profil_image'];
                 <?php foreach($objectifs as $objectif) :?>
                 <ul>
                 <li <?php if($objectif['archived'] == 1 ) :?> class="archived" <?php endif;?>><strong><?= $objectif['name'] ?> :</strong> <?= $objectif['content'] ?></li>
-                    <button class="profil-button <?php if($objectif['archived'] == 1 ) :?> hidden <?php endif;?>"><a href="modifications/archive_traitment.php">Archive</a></button></li>
+                    <button class="profil-button disabled <?php if($objectif['archived'] == 1 ) :?> hidden <?php endif;?>"><a href="modifications/archive_traitment.php">Archive</a></button></li>
                 </ul>
                 <?php endforeach;?>
             </section>

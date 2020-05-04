@@ -227,10 +227,28 @@ h2 {
     width: 80%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: 50px auto;
+}
+
+.card-profil {
+    background: rgb(18,211,207);
+    padding: 20px;
+    width: calc(95% / 3);
+    display: flex;
+    align-items: center;
     justify-content: space-around;
 }
 
-.card {
-    background-color: aquamarine;
-    padding: 20px;
+.card-profil figure, .card div {
+    width: calc(95% / 2);
+}
+
+.card-profil figure img {
+    height: 100px;
+    width: auto;
+}
+
+.disabled {
+    opacity: .5;
 }
