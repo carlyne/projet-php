@@ -140,7 +140,35 @@ select {
 }
 
 
-/* page */
+/* Home page */
+main.main-index {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+main.main-index p, main.main-index figure{
+    width: calc(95% / 2);
+    font-size : 1.25rem;
+}
+
+.main-index figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main.main-index img {
+    width: auto;
+    height: 350px;
+    text-align: center;
+}
+
+
+/* Profil page */
 
 main.profil-page {
     margin: 0;
@@ -184,4 +212,25 @@ h2 {
 .profil-button {
     font-size: 0.75rem;
     padding: 5px 10px;
+}
+
+.archived {
+    color: grey;
+    opacity: .8;
+}
+
+.hidden{
+    display: none;
+}
+
+.profils {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card {
+    background-color: aquamarine;
+    padding: 20px;
 }

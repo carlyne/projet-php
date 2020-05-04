@@ -16,7 +16,7 @@ $querySelectUserId = $bdd->query("SELECT * FROM user WHERE email = '$thisUserEma
 $user = $querySelectUserId->fetch(PDO::FETCH_ASSOC);
 $userId = (int) $user['id'];
 
-$bdd->query("INSERT INTO profil (user_id) VALUES($userId)");
+$response = $bdd->query("INSERT INTO profil (user_id) VALUES($userId)");
 
 // Bind profil to user
 $requestProfilId = "SELECT * FROM profil WHERE user_id=$userId";

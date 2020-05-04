@@ -8,6 +8,8 @@ $thisUserId = $_SESSION['user']['id'];
 $imageUser = $_FILES['image'];
 $fileSize = $imageUser['size'];
 
+var_dump($fileSize);
+
 // Access files's detail (extension, name, type,...)
 $pathinfoData = pathinfo($imageUser['name']);
 
@@ -24,5 +26,5 @@ $requestUpdateProfilImg = "UPDATE profil SET profil_image = '$newFileName' WHERE
 $bdd->query($requestUpdateProfilImg);
 
 // Back to profil page
-header("Location: ../profil_page.php");
+// header("Location: ../profil_page.php");
 ?>

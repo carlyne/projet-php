@@ -2,14 +2,17 @@
 <?php include('../index_traitment.php')?>
 
 <?php 
-// Get current user informations
-$thisUser = $_SESSION['user'];
+if($isUserConnected === true && $userHasCharacter === true) {
+    // Get list of all competences
 
-// Get list of all competences
-$request = "SELECT * FROM competence_list";
-$response = $bdd->query($request);
+    $user = $_SESSION['user'];
 
-$competences = $response->fetchAll(PDO::FETCH_ASSOC);
+    $requestCompetences = "SELECT * FROM competence_list";
+    $getCompetences = $bdd->query($requestCompetences);
+    $competences = $getCompetences->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    header("Location: ../error.php");
+}
 ?>
 
 
@@ -27,7 +30,7 @@ $competences = $response->fetchAll(PDO::FETCH_ASSOC);
         <h1>Ajouter une compétence </h1>
 
         <form class="creation" action="add_traitment.php" method="POST">
-            <input type="hidden" value=<?= $thisUser['id'] ?> name="id">
+            <input type="hidden" value=<?= $user['id'] ?> name="id">
 
             <div>
                 <p>Ajoutez une compétence inédite</p>

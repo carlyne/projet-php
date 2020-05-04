@@ -15,6 +15,11 @@ $requestUserCompetences = "SELECT * FROM competence_profil LEFT JOIN competence_
 $getCompetences = $bdd->query($requestUserCompetences);
 $competences = $getCompetences->fetchAll(PDO::FETCH_ASSOC);
 
+//Get user's objectifs
+$requestUserObjectifs = "SELECT * FROM objectif WHERE profil_id = $currentProfilId";
+$getObjectifs = $bdd->query($requestUserObjectifs);
+$objectifs = $getObjectifs->fetchAll(PDO::FETCH_ASSOC);
+
 // Get user's profil image
 $profilImage = $userProfil['profil_image'];
 ?>
@@ -55,9 +60,12 @@ $profilImage = $userProfil['profil_image'];
 
             <section class="objectifs">
                 <h2>Objectifs</h2>
+                <?php foreach($objectifs as $objectif) :?>
                 <ul>
-                    <li><?= $userProfil['objectifs'] ?></li>
+                <li <?php if($objectif['archived'] == 1 ) :?> class="archived" <?php endif;?>><strong><?= $objectif['name'] ?> :</strong> <?= $objectif['content'] ?></li>
+                    <button class="profil-button <?php if($objectif['archived'] == 1 ) :?> hidden <?php endif;?>"><a href="modifications/archive_traitment.php">Archive</a></button></li>
                 </ul>
+                <?php endforeach;?>
             </section>
             
         </div>

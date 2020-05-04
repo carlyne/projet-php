@@ -8,16 +8,16 @@
     <link rel="stylesheet" type="text/css" href="../partials/style.css">
 </head>
 <body>
-    <?php include('../partials/navbar.php')?>
+    <?php include('navbar_dist.php')?>
     
     <main>
         <h1>Connectez-vous ! </h1>
         <form action="login_traitment.php" method="POST">
             <div>
-                <input type="email" name="email" id="email" placeholder="votre email">
+                <input type="email" name="email" id="email" placeholder="votre email" required>
             </div>
             <div>
-                <input type="password" name="password" id="password" placeholder="votre mot de passe">
+                <input type="password" name="password" id="password"  placeholder="votre mot de passe" required>
             </div>
             <input class="button" type="submit">
         </form>

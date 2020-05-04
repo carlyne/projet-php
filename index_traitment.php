@@ -3,21 +3,21 @@
     $userHasCharacter = false;
 
     // Check if user is connected
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
         $isUserConnected = true;
-        $currentUserId = $_SESSION['user']['id'];
+        $profilId =  (int) $_SESSION['user']['profil'];
         
         // Get user's profil informations
-        $selectUserProfil = "SELECT * FROM user LEFT JOIN profil ON user.profil = profil.id WHERE   user.id = $currentUserId";
-        $response = $bdd->query($selectUserProfil);
-        $userProfil = $response->fetch(PDO::FETCH_ASSOC);
+        $requestUserProfil = "SELECT * FROM profil WHERE id = $profilId";
+        $sendUserProfil = $bdd->query($requestUserProfil);
+        $userProfil = $sendUserProfil->fetch(PDO::FETCH_ASSOC);
 
     } else {
         $isUserConnected = false;
     }
 
     // Check if character has been created
-    if (!empty($userProfil['pseudo'])) {
+    if ($isUserConnected == true && !empty($userProfil['pseudo'])) {
         $userHasCharacter = true;
     } else {
         $userHasCharacter = false;

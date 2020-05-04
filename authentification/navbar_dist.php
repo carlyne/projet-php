@@ -1,12 +1,12 @@
 <nav class="main-nav">
     <ul>
         <?php if(!$isUserConnected) : ?>
-            <li><a href="/authentification/login.php">Se connecter</a></li>
-            <li><a href="/authentification/signup.php">S'inscrire</a></li>
+            <li><a href="./login.php">Se connecter</a></li>
+            <li><a href="./signup.php">S'inscrire</a></li>
         <?php else :?>
-            <li><a href="logout.php">Se déconnecter</a></li>
+            <li><a href="./logout.php">Se déconnecter</a></li>
             <?php if(!$userHasCharacter) : ?>
-                <li><a href="/modifications/create.php">Créer personnage</a></li>
+                <li><a href="../modifications/create.php">Créer personnage</a></li>
 
             <?php else :?>
                 <li><a href="profil_page.php">Afficher personnage</a></li>
